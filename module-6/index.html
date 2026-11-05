@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Free report: module 6</title>
+<style>
+:root { --bg: #fff; --ink: #1f1d1a; --ink2: #47443f; --dim: #7a756c; --line: #e6e2db; --soft: #f5f3ef;
+  --accent: #2a6fd6; --ok: #1f9d63; --mid: #b8761a; --bad: #c63b3b; --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { margin: 0; color: var(--ink); font: 16px/1.55 var(--sans); }
+.top { position: sticky; top: 0; z-index: 2; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 780px; margin: 0 auto; padding: 8px 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; }
+.site { display: flex; gap: 4px; }
+.site a { font-size: 14px; font-weight: 650; text-decoration: none; color: var(--dim); padding: 6px 10px; border-radius: 8px; }
+.site a.on { color: var(--ink); background: var(--soft); }
+#where { color: var(--dim); font-size: 13.5px; white-space: nowrap; }
+main { max-width: 780px; margin: 0 auto; padding: 22px 16px 130px; }
+h1 { font-size: clamp(26px, 4.4vw, 36px); line-height: 1.18; margin: 8px 0 14px; letter-spacing: -.01em; }
+h2 { font-size: clamp(20px, 3vw, 24px); line-height: 1.25; margin: 2px 0 10px; }
+h3 { font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); margin: 22px 0 8px; }
+h3.first { margin-top: 0; }
+.kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); }
+.lede { color: var(--ink2); font-size: 17px; margin: 0 0 12px; }
+.steps { padding-left: 22px; color: var(--ink2); font-size: 16.5px; }
+.steps li { margin: 6px 0; }
+.small { color: var(--dim); font-size: 13.5px; }
+.say { color: var(--ink2); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; margin: 6px 0 18px; }
+.seg button { border: 0; background: var(--bg); padding: 8px 14px; font: 600 14px var(--sans); color: var(--dim); cursor: pointer; min-height: 38px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on { background: var(--ink); color: #fff; }
+.ptext { white-space: pre-wrap; color: var(--ink2); font-size: 15.5px; overflow-wrap: anywhere; }
+.qs { padding-left: 20px; color: var(--ink2); }
+.qs li { margin: 4px 0; }
+a { color: var(--accent); }
+a.ext { font-weight: 600; text-decoration: none; }
+.letter { white-space: pre-wrap; font-size: 16.5px; line-height: 1.62; border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; overflow-wrap: anywhere; }
+.qa { margin: 0 0 12px; }
+.qa .q { font-weight: 650; margin: 0 0 3px; }
+.qa .a { margin: 0; color: var(--ink2); }
+.box { white-space: pre-wrap; background: var(--soft); border-radius: 10px; padding: 12px; font-size: 14px; color: var(--ink2); overflow-wrap: anywhere; }
+details.fold summary { cursor: pointer; color: var(--accent); font-weight: 600; margin: 4px 0 8px; }
+.verdict { display: inline-block; font-weight: 700; font-size: 15px; padding: 6px 12px; border-radius: 999px; color: #fff; margin: 0 0 12px; }
+.verdict.ok { background: var(--ok); } .verdict.bad { background: var(--bad); }
+blockquote { margin: 0 0 14px; padding: 10px 14px; background: var(--soft); border-radius: 10px; color: var(--ink2); }
+.why { padding-left: 20px; color: var(--ink2); }
+.why li { margin: 6px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 6px 0 18px; }
+.stat { background: var(--soft); border-radius: 12px; padding: 12px; }
+.stat b { display: block; font-size: 26px; line-height: 1.1; }
+.stat span { color: var(--ink2); font-size: 14px; }
+table.reasons { border-collapse: collapse; width: 100%; margin: 4px 0 16px; font-size: 15px; }
+table.reasons td { padding: 6px 4px; border-bottom: 1px solid var(--line); color: var(--ink2); }
+table.reasons td.n { text-align: right; font-weight: 700; color: var(--ink); width: 4em; }
+.fb { background: var(--soft); border-radius: 14px; padding: 16px; margin-top: 24px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.choices button { font: 600 14.5px var(--sans); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; min-height: 42px; }
+.choices button[aria-pressed="true"][data-c="ok"] { background: var(--ok); border-color: var(--ok); color: #fff; }
+.choices button[aria-pressed="true"][data-c="mid"] { background: var(--mid); border-color: var(--mid); color: #fff; }
+.choices button[aria-pressed="true"][data-c="bad"] { background: var(--bad); border-color: var(--bad); color: #fff; }
+label { font-weight: 600; font-size: 14.5px; display: block; margin-bottom: 6px; }
+textarea, input[type=text] { width: 100%; font: 15px/1.45 var(--sans); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 80px; resize: vertical; }
+.marks { list-style: none; padding: 0; margin: 10px 0 18px; }
+.marks li { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.marks a { color: var(--ink); text-decoration: none; flex: 1; }
+.marks a:hover { text-decoration: underline; }
+.tag { font-size: 13px; font-weight: 700; white-space: nowrap; }
+.tag.ok { color: var(--ok); } .tag.mid { color: var(--mid); } .tag.bad { color: var(--bad); } .tag.none { color: var(--dim); font-weight: 500; }
+.big { font: 700 16px var(--sans); background: var(--ink); color: #fff; border: 0; border-radius: 12px; padding: 13px 20px; cursor: pointer; min-height: 48px; }
+.done { color: var(--ok); font-weight: 600; margin-left: 10px; }
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 2; background: var(--bg); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+.nav .in { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; }
+.nav button.step { font: 600 15px var(--sans); border-radius: 10px; padding: 10px 16px; min-height: 44px; cursor: pointer; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.nav button.step.next { background: var(--ink); color: #fff; border-color: var(--ink); }
+.nav button.step:disabled { opacity: .35; cursor: default; }
+.dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; }
+.dots button { width: 12px; height: 12px; border-radius: 50%; border: 0; padding: 0; background: var(--line); cursor: pointer; }
+.dots button.ok { background: var(--ok); } .dots button.mid { background: var(--mid); } .dots button.bad { background: var(--bad); }
+.dots button[aria-current="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* Phones: the dots stay on one row between Back and Next. */
+@media (max-width: 480px) { .dots { gap: 5px; } .dots button { width: 9px; height: 9px; } .nav button.step { padding: 10px 12px; } .site a { padding: 6px 8px; } }
+/* Module pages: tables, bars, the module menu, pictures and the map (real numbers only). */
+table.grid { border-collapse: collapse; width: 100%; margin: 4px 0 14px; font-size: 14px; }
+table.grid th { text-align: left; font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--dim); padding: 6px 4px; border-bottom: 1px solid var(--line); }
+table.grid td { padding: 6px 4px; border-bottom: 1px solid var(--line); color: var(--ink2); vertical-align: top; overflow-wrap: anywhere; }
+table.reasons td:first-child { color: var(--ink); }
+.bars { display: grid; gap: 4px; margin: 4px 0 12px; }
+.bar { display: grid; grid-template-columns: 74px 1fr 64px; gap: 8px; align-items: center; font-size: 13.5px; }
+.bars.wide .bar { grid-template-columns: minmax(120px, 230px) 1fr 54px; }
+.bar i { display: block; height: 12px; width: var(--w); background: var(--accent); border-radius: 6px; }
+.bar.hi i, .bar.mid i { background: var(--mid); } .bar.bad i { background: var(--bad); } .bar.good i { background: var(--ok); }
+.bar b { text-align: right; font-variant-numeric: tabular-nums; }
+.note { background: #fff7e8; border-left: 3px solid var(--mid); border-radius: 8px; padding: 10px 12px; color: var(--ink2); font-size: 15px; }
+.tag { margin-right: 4px; }
+.mods { position: relative; }
+.mods summary { list-style: none; cursor: pointer; font-size: 14px; font-weight: 650; padding: 6px 10px; border-radius: 8px; background: var(--soft); color: var(--ink); }
+.mods summary::-webkit-details-marker { display: none; }
+.mods summary::after { content: " \25BE"; color: var(--dim); }
+.mods .menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 5; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); padding: 6px; min-width: 230px; display: grid; }
+.site .mods .menu a { padding: 9px 10px; border-radius: 8px; color: var(--ink); font-size: 14.5px; }
+.site .mods .menu a:hover { background: var(--soft); }
+.site .mods .menu a[aria-current="page"] { background: var(--soft); font-weight: 750; }
+.shots { display: grid; gap: 10px; margin: 6px 0 14px; }
+.shots.two { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.shots img, img.shot { width: 100%; border: 1px solid var(--line); border-radius: 10px; display: block; }
+figure { margin: 0; } figcaption { font-size: 13px; color: var(--dim); margin-top: 4px; }
+.ads { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 6px 0 14px; }
+.adcard { border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 6px; align-content: start; font-size: 13.5px; }
+.adcard img.adpic { width: 100%; max-height: 260px; object-fit: contain; background: var(--soft); border-radius: 8px; }
+.adcard .meta { color: var(--dim); font-size: 12.5px; } .adcard .words { color: var(--ink2); }
+.adcard ul.lines { list-style: none; padding: 0; margin: 0; font-size: 12.5px; }
+.adcard ul.lines li.y::before { content: "\2713 "; color: var(--ok); font-weight: 700; }
+.adcard ul.lines li.n::before { content: "\2717 "; color: var(--bad); font-weight: 700; }
+.serpad { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; font-family: Arial, var(--sans); }
+.serpad .spon { font-size: 12px; font-weight: 700; color: var(--ink); } .serpad .who { font-size: 13px; color: var(--ink); } .serpad .who span { color: var(--dim); }
+.serpad .hl { color: #1a0dab; font-size: 18px; line-height: 1.3; margin: 2px 0 4px; } .serpad .desc { font-size: 13.5px; color: #4d5156; } .serpad .ext { font-size: 12.5px; color: #1a0dab; margin-top: 4px; }
+svg.map { width: 100%; height: auto; display: block; margin: 6px 0 4px; }
+svg.map rect { fill: var(--soft); }
+svg.map circle.pg { fill: #2a6fd6; opacity: .85; } svg.map circle.pm { fill: #7b4fd6; opacity: .85; }
+svg.map circle.pb { fill: #2a6fd6; stroke: #7b4fd6; stroke-width: 4; opacity: .9; }
+svg.map text { font: 600 11px var(--sans); fill: var(--ink2); text-anchor: middle; }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin: 0 3px 0 8px; vertical-align: -1px; }
+.sw.pg { background: #2a6fd6; } .sw.pm { background: #7b4fd6; } .sw.pb { background: #2a6fd6; box-shadow: 0 0 0 3px #7b4fd6 inset; }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><nav class="site" aria-label="Pages"><a href="../">The plan</a><details class="mods"><summary>Module 6 · Tracking</summary><div class="menu"><a href="../module-1/">1 · Search volume</a><a href="../module-2/">2 · Who advertises</a><a href="../module-3/">3 · Competitor ads</a><a href="../module-4/">4 · Page speed</a><a href="../module-5/">5 · Shopping</a><a href="../module-6/" aria-current="page">6 · Tracking</a><a href="../module-7/">7 · Reviews</a></div></details></nav><span id="where"></span></div></div>
+<main id="slide" tabindex="-1"></main>
+<nav class="nav" aria-label="Slides"><div class="in">
+  <button class="step" id="back" type="button">‹ Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="step next" id="next" type="button">Next ›</button>
+</div></nav>
+<script id="config" type="application/json">{"key": "free-report-module-6-2026-11-05", "noun": "Slide", "nouns": "slides", "tab": "in", "head": "Free report module 6 (tracking)", "form": null, "question": "Is this read right?", "noteLabel": "What would you change? (optional)", "notePlaceholder": "A finding that is wrong, a number that looks off, something we missed...", "choices": [["right", "Right", "ok"], ["fix", "Right, with changes", "mid"], ["wrong", "Wrong", "bad"]], "start": "<div class=\"kicker\">Free report · Module 6 · Nov 5, 2026<\/div>\n<h1>Tracking on 4 real leads<\/h1>\n<p class=\"lede\">Module 6 ran on 3 real Utah plumbers and an online store. Each slide shows the pages we read, the tags we saw, the Tag Manager setup, forms and calls, the click id test, and what the report says.<\/p>\n<ol class=\"steps\"><li>Read each slide's tabs, left to right.<\/li><li>Mark each slide, and write what to change.<\/li>\n<li>On the last slide, copy your feedback and send it to Will.<\/li><\/ol>\n<p class=\"small\">Every number comes from last night's real runs. No business was contacted. Use the Module menu at the top to move between modules.<\/p>"}</script>
+<script id="items" type="application/json">[{"ref": "Lead 1", "title": "Plumbing Utah · Sandy, UT", "kicker": "Runs Google ads", "tabs": [["in", "Pages read", "<table class=\"grid\"><tr><th>Page<\/th><th>Address<\/th><th>Answer<\/th><th>Ended at<\/th><\/tr><tr><td>home page<\/td><td><a href=\"https://www.plumbingutah.com/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/<\/a><\/td><td>200<\/td><td><a href=\"https://www.plumbingutah.com/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/<\/a><\/td><\/tr><tr><td>contact page (Contact Us)<\/td><td><a href=\"https://www.plumbingutah.com/contact/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/contact/<\/a><\/td><td>200<\/td><td><a href=\"https://www.plumbingutah.com/contact/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/contact/<\/a><\/td><\/tr><\/table><p class=\"small\">Read in a guarded Chrome: every request to another site is stopped, so no tag records our visit. No form, call or order is ever sent.<\/p><div class=\"shots two\"><figure><img class=\"shot\" src=\"img/plumbingutah.com/tracking-0.jpg\" alt=\"The home page as we read it\" loading=\"lazy\"><figcaption>home page<\/figcaption><\/figure><figure><img class=\"shot\" src=\"img/plumbingutah.com/tracking-1.jpg\" alt=\"The contact page (Contact Us) as we read it\" loading=\"lazy\"><figcaption>contact page (Contact Us)<\/figcaption><\/figure><\/div>"], ["tags", "Tags we saw", "<h3>home page<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>AW-11335857703, AW-942610425, G-8C59G0L8GZ (2 times in the code), GT-5R7TW83<\/td><\/tr><tr><td>Tag Manager<\/td><td>GTM-MDG62NBZ<\/td><\/tr><tr><td>Google events in the code<\/td><td>RequestServiceFormSubmission<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>cdn.trustindex.io (5), www.googletagmanager.com (4), connect.podium.com (1), fonts.googleapis.com (1), www.google.com (1)<\/td><\/tr><\/table><h3>contact page (Contact Us)<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>AW-11335857703, AW-942610425, G-8C59G0L8GZ (2 times in the code), GT-5R7TW83<\/td><\/tr><tr><td>Tag Manager<\/td><td>GTM-MDG62NBZ<\/td><\/tr><tr><td>Google events in the code<\/td><td>RequestServiceFormSubmission<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>www.googletagmanager.com (5), connect.podium.com (1), storage.googleapis.com (1), www.google.com (1)<\/td><\/tr><\/table>"], ["gtm", "Tag Manager", "<table class=\"grid\"><tr><th>What<\/th><th>Id<\/th><th>Event<\/th><th>Fires<\/th><th>Counts a lead<\/th><\/tr><tr><td>GA4 event<\/td><td>G-8C59G0L8GZ<\/td><td>form_submission<\/td><td>on gtm.js when the page URL contains thank-you<\/td><td>yes<\/td><\/tr><tr><td>GA4 event<\/td><td>G-8C59G0L8GZ<\/td><td>click_to_call<\/td><td>on gtm.linkClick when data layer gtm.elementUrl contains tel: and data layer gtm.triggers matches (^$|((^|,)195070782_11($|,)))<\/td><td>yes<\/td><\/tr><tr><td>Custom HTML<\/td><td><\/td><td><\/td><td>on gtm.js<\/td><td><\/td><\/tr><\/table>"], ["forms", "Forms and calls", "<table class=\"grid\"><tr><th>Page<\/th><th>Forms<\/th><th>Form tools<\/th><th>Same-page message<\/th><th>Boxes from other sites<\/th><th>Phones<\/th><th>Call tracking<\/th><\/tr><tr><td>home page<\/td><td>4<\/td><td>none<\/td><td>Formidable<\/td><td>storage.googleapis.com, www.googletagmanager.com<\/td><td>8016011298<\/td><td>Google forwarding numbers<\/td><\/tr><tr><td>contact page (Contact Us)<\/td><td>3<\/td><td>none<\/td><td>Formidable<\/td><td>storage.googleapis.com, www.googletagmanager.com<\/td><td>8016011298<\/td><td>Google forwarding numbers<\/td><\/tr><\/table><p class=\"small\">A form in a box from another site, or one that shows a message on the same page, needs an event to be counted.<\/p>"], ["click", "Click id test", "<table class=\"reasons\"><tr><th>Step<\/th><th>Value<\/th><\/tr><tr><td>Test address<\/td><td>https://www.plumbingutah.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Final address<\/td><td>https://www.plumbingutah.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Answer<\/td><td>200<\/td><\/tr><tr><td>Click id kept (redirects)<\/td><td>yes<\/td><\/tr><tr><td>Click id kept (in the browser)<\/td><td>yes<\/td><\/tr><\/table><p class=\"small\">The test click id (gclid=FREEREPORTTEST) is followed with no tags running.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Tags we can see on your site: Tag Manager GTM-MDG62NBZ; Google tag AW-11335857703 in the page code; Google tag AW-942610425 in the page code; Google tag G-8C59G0L8GZ in the page code (2 times); Google tag GT-5R7TW83 in the page code; GA4 event G-8C59G0L8GZ form_submission in GTM-MDG62NBZ (on gtm.js when the page URL contains thank-you); GA4 event G-8C59G0L8GZ click_to_call in GTM-MDG62NBZ (on gtm.linkClick when data layer gtm.elementUrl contains tel: and data layer gtm.triggers matches (^$|((^|,)195070782_11($|,)))); Custom HTML in GTM-MDG62NBZ (on gtm.js); call tracking: Google forwarding numbers; tags that tried to load and were stopped: Google tag or Tag Manager.<\/li><li><span class=\"tag ok\">Seen<\/span> The same tag loads twice on your pages: G-8C59G0L8GZ (2 times in the page code). Leads are counted twice.<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Each page loaded in our guarded Chrome: every request to another site was stopped before it left, so no tag recorded our visit. We list the tags that tried to load.<\/li><li>Each Tag Manager container was read from its public file (googletagmanager.com/gtm.js), with what fires on what.<\/li><li>The click test added a test click ID (gclid=FREEREPORTTEST) to https://www.plumbingutah.com/ and followed its redirects with no tags running. No form, call, or order was sent.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 · 15 seconds · read Nov 5, 2026 · checks: 6 pass, 2 warning (The home page, the ad page, and the contact page are read, The ad link&#x27;s redirects keep the click ID).<\/p>"]]}, {"ref": "Lead 2", "title": "Top Shelf Plumbing Pros · Sandy, UT", "kicker": "Runs one Meta ad, no Google ads", "tabs": [["in", "Pages read", "<table class=\"grid\"><tr><th>Page<\/th><th>Address<\/th><th>Answer<\/th><th>Ended at<\/th><\/tr><tr><td>home page<\/td><td><a href=\"https://topshelfplumbingsandy.com/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/<\/a><\/td><td>200<\/td><td><a href=\"https://topshelfplumbingsandy.com/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/<\/a><\/td><\/tr><tr><td>contact page (Book a Plumber now)<\/td><td><a href=\"https://topshelfplumbingsandy.com/contact/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/contact/<\/a><\/td><td>200<\/td><td><a href=\"https://topshelfplumbingsandy.com/contact/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/contact/<\/a><\/td><\/tr><\/table><p class=\"small\">Read in a guarded Chrome: every request to another site is stopped, so no tag records our visit. No form, call or order is ever sent.<\/p><div class=\"shots two\"><figure><img class=\"shot\" src=\"img/topshelfplumbingsandy.com/tracking-0.jpg\" alt=\"The home page as we read it\" loading=\"lazy\"><figcaption>home page<\/figcaption><\/figure><figure><img class=\"shot\" src=\"img/topshelfplumbingsandy.com/tracking-1.jpg\" alt=\"The contact page (Book a Plumber now) as we read it\" loading=\"lazy\"><figcaption>contact page (Book a Plumber now)<\/figcaption><\/figure><\/div>"], ["tags", "Tags we saw", "<h3>home page<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>none<\/td><\/tr><tr><td>Tag Manager<\/td><td>none<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>reputationhub.site (2), widgets.leadconnectorhq.com (2), api.leadconnectorhq.com (1), fonts.googleapis.com (1), link.msgsndr.com (1)<\/td><\/tr><\/table><h3>contact page (Book a Plumber now)<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>none<\/td><\/tr><tr><td>Tag Manager<\/td><td>none<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>widgets.leadconnectorhq.com (2), www.google.com (2), api.leadconnectorhq.com (1), fonts.googleapis.com (1), link.msgsndr.com (1)<\/td><\/tr><\/table>"], ["gtm", "Tag Manager", "<p class=\"say\">No tag in a public Tag Manager container.<\/p>"], ["forms", "Forms and calls", "<table class=\"grid\"><tr><th>Page<\/th><th>Forms<\/th><th>Form tools<\/th><th>Same-page message<\/th><th>Boxes from other sites<\/th><th>Phones<\/th><th>Call tracking<\/th><\/tr><tr><td>home page<\/td><td>0<\/td><td>none<\/td><td>none<\/td><td>api.leadconnectorhq.com, reputationhub.site<\/td><td>3854626193<\/td><td>none<\/td><\/tr><tr><td>contact page (Book a Plumber now)<\/td><td>0<\/td><td>none<\/td><td>none<\/td><td>api.leadconnectorhq.com<\/td><td>none<\/td><td>none<\/td><\/tr><\/table><p class=\"small\">A form in a box from another site, or one that shows a message on the same page, needs an event to be counted.<\/p>"], ["click", "Click id test", "<table class=\"reasons\"><tr><th>Step<\/th><th>Value<\/th><\/tr><tr><td>Test address<\/td><td>https://topshelfplumbingsandy.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Final address<\/td><td>https://topshelfplumbingsandy.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Answer<\/td><td>200<\/td><\/tr><tr><td>Click id kept (redirects)<\/td><td>yes<\/td><\/tr><tr><td>Click id kept (in the browser)<\/td><td>yes<\/td><\/tr><\/table><p class=\"small\">The test click id (gclid=FREEREPORTTEST) is followed with no tags running.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> We cannot find any tag on the pages we read.<\/li><li><span class=\"tag ok\">Seen<\/span> We cannot find a Google Ads tag on the pages we read.<\/li><li><span class=\"tag mid\">Likely<\/span> Your contact form sits in a box from another site (api.leadconnectorhq.com), and we cannot find an event that counts it: leads are likely not counted.<\/li><li><span class=\"tag mid\">Likely<\/span> Your site asks people to call (3854626193), but we cannot find call tracking: calls are likely not counted.<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Each page loaded in our guarded Chrome: every request to another site was stopped before it left, so no tag recorded our visit. We list the tags that tried to load.<\/li><li>Each Tag Manager container was read from its public file (googletagmanager.com/gtm.js), with what fires on what.<\/li><li>The click test added a test click ID (gclid=FREEREPORTTEST) to https://topshelfplumbingsandy.com/ and followed its redirects with no tags running. No form, call, or order was sent.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 · 7 seconds · read Nov 5, 2026 · checks: 7 pass, 1 warning (The ad link&#x27;s redirects keep the click ID).<\/p>"]]}, {"ref": "Lead 3", "title": "Bumble Bee Plumbing · Sandy, UT", "kicker": "Runs no ads", "tabs": [["in", "Pages read", "<table class=\"grid\"><tr><th>Page<\/th><th>Address<\/th><th>Answer<\/th><th>Ended at<\/th><\/tr><tr><td>home page<\/td><td><a href=\"https://bumblebeeplumbers.com/\" target=\"_blank\" rel=\"noopener\">bumblebeeplumbers.com/<\/a><\/td><td>200<\/td><td><a href=\"https://bumblebeeplumbers.com/\" target=\"_blank\" rel=\"noopener\">bumblebeeplumbers.com/<\/a><\/td><\/tr><tr><td>contact page (Contact)<\/td><td><a href=\"https://bumblebeeplumbers.com/contact-us/\" target=\"_blank\" rel=\"noopener\">bumblebeeplumbers.com/contact-us/<\/a><\/td><td>200<\/td><td><a href=\"https://bumblebeeplumbers.com/contact-us/\" target=\"_blank\" rel=\"noopener\">bumblebeeplumbers.com/contact-us/<\/a><\/td><\/tr><\/table><p class=\"small\">Read in a guarded Chrome: every request to another site is stopped, so no tag records our visit. No form, call or order is ever sent.<\/p><div class=\"shots two\"><figure><img class=\"shot\" src=\"img/bumblebeeplumbers.com/tracking-0.jpg\" alt=\"The home page as we read it\" loading=\"lazy\"><figcaption>home page<\/figcaption><\/figure><figure><img class=\"shot\" src=\"img/bumblebeeplumbers.com/tracking-1.jpg\" alt=\"The contact page (Contact) as we read it\" loading=\"lazy\"><figcaption>contact page (Contact)<\/figcaption><\/figure><\/div>"], ["tags", "Tags we saw", "<h3>home page<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>none<\/td><\/tr><tr><td>Tag Manager<\/td><td>GTM-MZ22TZB8<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>fonts.googleapis.com (2)<\/td><\/tr><\/table><h3>contact page (Contact)<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>none<\/td><\/tr><tr><td>Tag Manager<\/td><td>GTM-MZ22TZB8<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>book.housecallpro.com (1), fonts.googleapis.com (1), www.google.com (1)<\/td><\/tr><\/table>"], ["gtm", "Tag Manager", "<table class=\"grid\"><tr><th>What<\/th><th>Id<\/th><th>Event<\/th><th>Fires<\/th><th>Counts a lead<\/th><\/tr><tr><td>Google tag<\/td><td>G-TDEHD4MXX2<\/td><td><\/td><td>on gtm.js<\/td><td><\/td><\/tr><tr><td>GA4 event<\/td><td>G-TDEHD4MXX2<\/td><td>click_to_call<\/td><td>on gtm.linkClick when data layer gtm.elementUrl starts with tel: and data layer gtm.triggers matches (^$|((^|,)196080539_5($|,)))<\/td><td>yes<\/td><\/tr><tr><td>GA4 event<\/td><td>G-TDEHD4MXX2<\/td><td>click_to_chat<\/td><td>on gtm.linkClick when data layer gtm.elementUrl starts with sms: and data layer gtm.triggers matches (^$|((^|,)196080539_4($|,)))<\/td><td><\/td><\/tr><tr><td>GA4 event<\/td><td>G-TDEHD4MXX2<\/td><td>form_submit<\/td><td>on gtm.click when variable __aev equals SEND<\/td><td>yes<\/td><\/tr><\/table>"], ["forms", "Forms and calls", "<table class=\"grid\"><tr><th>Page<\/th><th>Forms<\/th><th>Form tools<\/th><th>Same-page message<\/th><th>Boxes from other sites<\/th><th>Phones<\/th><th>Call tracking<\/th><\/tr><tr><td>home page<\/td><td>0<\/td><td>none<\/td><td>none<\/td><td>www.googletagmanager.com<\/td><td>13852051833<\/td><td>none<\/td><\/tr><tr><td>contact page (Contact)<\/td><td>1<\/td><td>none<\/td><td>Elementor form<\/td><td>book.housecallpro.com, www.googletagmanager.com<\/td><td>13852051833<\/td><td>none<\/td><\/tr><\/table><p class=\"small\">A form in a box from another site, or one that shows a message on the same page, needs an event to be counted.<\/p>"], ["click", "Click id test", "<table class=\"reasons\"><tr><th>Step<\/th><th>Value<\/th><\/tr><tr><td>Test address<\/td><td>https://bumblebeeplumbers.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Final address<\/td><td>https://bumblebeeplumbers.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Answer<\/td><td>200<\/td><\/tr><tr><td>Click id kept (redirects)<\/td><td>yes<\/td><\/tr><tr><td>Click id kept (in the browser)<\/td><td>yes<\/td><\/tr><\/table><p class=\"small\">The test click id (gclid=FREEREPORTTEST) is followed with no tags running.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Tags we can see on your site: Tag Manager GTM-MZ22TZB8; Google tag G-TDEHD4MXX2 in GTM-MZ22TZB8 (on gtm.js); GA4 event G-TDEHD4MXX2 click_to_call in GTM-MZ22TZB8 (on gtm.linkClick when data layer gtm.elementUrl starts with tel: and data layer gtm.triggers matches (^$|((^|,)196080539_5($|,)))); GA4 event G-TDEHD4MXX2 click_to_chat in GTM-MZ22TZB8 (on gtm.linkClick when data layer gtm.elementUrl starts with sms: and data layer gtm.triggers matches (^$|((^|,)196080539_4($|,)))); GA4 event G-TDEHD4MXX2 form_submit in GTM-MZ22TZB8 (on gtm.click when variable __aev equals SEND).<\/li><li><span class=\"tag ok\">Seen<\/span> We cannot find a Google Ads tag on the pages we read.<\/li><li><span class=\"tag mid\">Likely<\/span> Your site asks people to call (13852051833), but we cannot find call tracking: calls are likely not counted.<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Each page loaded in our guarded Chrome: every request to another site was stopped before it left, so no tag recorded our visit. We list the tags that tried to load.<\/li><li>Each Tag Manager container was read from its public file (googletagmanager.com/gtm.js), with what fires on what.<\/li><li>The click test added a test click ID (gclid=FREEREPORTTEST) to https://bumblebeeplumbers.com/ and followed its redirects with no tags running. No form, call, or order was sent.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 · 11 seconds · read Nov 5, 2026 · checks: 7 pass, 1 warning (The ad link&#x27;s redirects keep the click ID).<\/p>"]]}, {"ref": "Lead 4", "title": "Appalachian Outdoors · State College, PA", "kicker": "An online store", "tabs": [["in", "Pages read", "<table class=\"grid\"><tr><th>Page<\/th><th>Address<\/th><th>Answer<\/th><th>Ended at<\/th><\/tr><tr><td>home page<\/td><td><a href=\"https://appoutdoors.com/\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/<\/a><\/td><td>200<\/td><td><a href=\"https://appoutdoors.com/\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/<\/a><\/td><\/tr><tr><td>contact page (Maps &amp; Guidebooks)<\/td><td><a href=\"https://appoutdoors.com/collections/maps-guidebooks\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/collections/maps-guidebooks<\/a><\/td><td>200<\/td><td><a href=\"https://appoutdoors.com/collections/maps-guidebooks\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/collections/maps-guidebooks<\/a><\/td><\/tr><\/table><p class=\"small\">Read in a guarded Chrome: every request to another site is stopped, so no tag records our visit. No form, call or order is ever sent.<\/p><div class=\"shots two\"><figure><img class=\"shot\" src=\"img/appoutdoors.com/tracking-0.jpg\" alt=\"The home page as we read it\" loading=\"lazy\"><figcaption>home page<\/figcaption><\/figure><figure><img class=\"shot\" src=\"img/appoutdoors.com/tracking-1.jpg\" alt=\"The contact page (Maps &amp; Guidebooks) as we read it\" loading=\"lazy\"><figcaption>contact page (Maps &amp; Guidebooks)<\/figcaption><\/figure><\/div>"], ["tags", "Tags we saw", "<h3>home page<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>G-6SS8NPJCD6, GT-PHCKWT87<\/td><\/tr><tr><td>Tag Manager<\/td><td>none<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>cdn.shopify.com (8), appoutdoors.com (a collect endpoint (Shopify /api/collect, GA4 /g/collect)) (4), appoutdoors.com (Shopify Monorail) (3), appoutdoors.com (Shopify web pixels) (2), services.nofraud.com (1), shop.app (1)<\/td><\/tr><\/table><h3>contact page (Maps &amp; Guidebooks)<\/h3><table class=\"reasons\"><tr><th>What<\/th><th>Seen<\/th><\/tr><tr><td>Google ids<\/td><td>G-6SS8NPJCD6, GT-PHCKWT87<\/td><\/tr><tr><td>Tag Manager<\/td><td>none<\/td><\/tr><tr><td>Google events in the code<\/td><td>none<\/td><\/tr><tr><td>Meta Pixel<\/td><td>none<\/td><\/tr><tr><td>Meta events<\/td><td>none<\/td><\/tr><tr><td>Microsoft (UET)<\/td><td>no<\/td><\/tr><tr><td>Old Universal Analytics<\/td><td>none<\/td><\/tr><tr><td>Requests we stopped (to)<\/td><td>cdn.shopify.com (10), appoutdoors.com (Shopify Monorail) (4), appoutdoors.com (a collect endpoint (Shopify /api/collect, GA4 /g/collect)) (3), appoutdoors.com (Shopify web pixels) (2), services.nofraud.com (1), shop.app (1)<\/td><\/tr><\/table>"], ["gtm", "Tag Manager", "<p class=\"say\">No tag in a public Tag Manager container.<\/p>"], ["forms", "Forms and calls", "<table class=\"grid\"><tr><th>Page<\/th><th>Forms<\/th><th>Form tools<\/th><th>Same-page message<\/th><th>Boxes from other sites<\/th><th>Phones<\/th><th>Call tracking<\/th><\/tr><tr><td>home page<\/td><td>31<\/td><td>none<\/td><td>none<\/td><td>none<\/td><td>none<\/td><td>none<\/td><\/tr><tr><td>contact page (Maps &amp; Guidebooks)<\/td><td>29<\/td><td>none<\/td><td>none<\/td><td>none<\/td><td>none<\/td><td>none<\/td><\/tr><\/table><p class=\"small\">A form in a box from another site, or one that shows a message on the same page, needs an event to be counted.<\/p>"], ["click", "Click id test", "<table class=\"reasons\"><tr><th>Step<\/th><th>Value<\/th><\/tr><tr><td>Test address<\/td><td>https://appoutdoors.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Final address<\/td><td>https://appoutdoors.com/?gclid=FREEREPORTTEST<\/td><\/tr><tr><td>Answer<\/td><td>200<\/td><\/tr><tr><td>Click id kept (redirects)<\/td><td>yes<\/td><\/tr><tr><td>Click id kept (in the browser)<\/td><td>yes<\/td><\/tr><\/table><p class=\"small\">The test click id (gclid=FREEREPORTTEST) is followed with no tags running.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Tags we can see on your site: Google tag G-6SS8NPJCD6 in the page code; Google tag GT-PHCKWT87 in the page code; Shopify Web Pixels (the store&#x27;s apps load its tags through Shopify; the ids above include theirs); tags that tried to load and were stopped: Shopify Web Pixels.<\/li><li><span class=\"tag ok\">Seen<\/span> We cannot find a Google Ads tag on the pages we read.<\/li><\/ul><h3>Could not read<\/h3><ul class=\"why\"><li>Whether you run ads, and your ad page: no advertisers file for appoutdoors.com yet. Run `verify free-report advertisers --site appoutdoors.com` first<\/li><li>The events your Shopify apps send (a purchase, a lead): Shopify&#x27;s apps set them inside Shopify, which no outside read can see<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Each page loaded in our guarded Chrome: every request to another site was stopped before it left, so no tag recorded our visit. We list the tags that tried to load.<\/li><li>Each Tag Manager container was read from its public file (googletagmanager.com/gtm.js), with what fires on what.<\/li><li>The click test added a test click ID (gclid=FREEREPORTTEST) to https://appoutdoors.com/ and followed its redirects with no tags running. No form, call, or order was sent.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 · 18 seconds · read Nov 5, 2026 · checks: 6 pass, 2 warning (The home page, the ad page, and the contact page are read, The ad link&#x27;s redirects keep the click ID).<\/p>"]]}]</script>
+<script>
+const C = JSON.parse(document.getElementById("config").textContent);
+const L = JSON.parse(document.getElementById("items").textContent);
+const COLOR = Object.fromEntries(C.choices.map(([v, , c]) => [v, c]));
+const LABEL = Object.fromEntries(C.choices.map(([v, t]) => [v, t]));
+// A slide may carry its own question and choices (a decision); every other slide uses the page's.
+const pick = (i, v) => ((L[i] && L[i].choices) || C.choices).find(c => c[0] === v) || [];
+const colorOf = (i, v) => pick(i, v)[2] || "";
+const labelOf = (i, v) => pick(i, v)[1] || "";
+const LAST = L.length + 1;   // slide 0: the start; 1 to L.length: the items; LAST: send the feedback
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+// A reader's marks, kept in their own browser (a convenience: the page works without it).
+let state = {};
+try { state = JSON.parse(localStorage.getItem(C.key) || "{}") || {}; } catch (e) { console.warn("[review] storage not readable", e); }
+const save = () => { try { localStorage.setItem(C.key, JSON.stringify(state)); } catch (e) { console.warn("[review] storage not writable", e); } };
+const marked = () => L.filter((_, i) => state[i]?.v).length;
+let at = 0, tab = C.tab;
+
+// Will's Google Form (Nov 5, "2"): each answer saves for Will as the reader clicks it. The form takes a plain POST with
+// no login. A no-cors POST hides the reply, so a network error is the only failure the page can see.
+let reader = "";
+try {
+  reader = localStorage.getItem("review-reader") || "";
+  if (!reader) { reader = "r" + Math.random().toString(36).slice(2, 8); localStorage.setItem("review-reader", reader); }
+} catch (e) { reader = "r" + Math.random().toString(36).slice(2, 8); }
+const timers = {};
+const status = msg => { const el = document.getElementById("saved"); if (el) el.textContent = msg; };
+async function send(item, choice, note) {
+  if (!C.form) return;
+  const f = C.form.entries, body = new URLSearchParams();
+  body.set(f.page, C.head); body.set(f.item, item); body.set(f.choice, choice || ""); body.set(f.note, note || "");
+  body.set(f.name, (state.name || "").trim()); body.set(f.reader, reader);
+  status("Saving...");
+  const t = performance.now();
+  try {
+    await fetch(C.form.post, { method: "POST", mode: "no-cors", body });
+    status("Saved for Will.");
+    console.log("[review] saved", { page: C.key, item, choice, ms: Math.round(performance.now() - t) });
+  } catch (e) {
+    status("Not saved. Use Copy my feedback on the last slide.");
+    console.error("[review] save failed", { page: C.key, item, error: String(e) });
+  }
+}
+const itemLabel = i => `${C.noun} ${i + 1}: ${L[i].title} (${L[i].ref})`;
+function sendItem(i, wait) {
+  clearTimeout(timers[i]);
+  timers[i] = setTimeout(() => { const s = state[i] || {}; send(itemLabel(i), s.v ? labelOf(i, s.v) : "", s.note); }, wait);
+}
+const nameField = () => `<label for="name">Your name</label>
+  <input type="text" id="name" placeholder="Your name" autocomplete="name" value="${esc(state.name || "")}">`;
+
+function itemSlide(i) {
+  const x = L[i], s = state[i] || {};
+  const t = x.tabs.find(([k]) => k === tab) || x.tabs[0];
+  return `<div class="kicker">${C.noun} ${i + 1} of ${L.length}${x.kicker ? ` · ${esc(x.kicker)}` : ""}</div>
+    <h2>${esc(x.title)}</h2>
+    <div class="seg" role="tablist">${x.tabs.map(([k, w]) => `<button type="button" data-tab="${k}" class="${k === t[0] ? "on" : ""}" role="tab" aria-selected="${k === t[0]}">${esc(w)}</button>`).join("")}</div>
+    ${t[2]}
+    <div class="fb">
+      <label id="c${i}">${esc(x.question || C.question)}</label>
+      <div class="choices" role="group" aria-labelledby="c${i}">${(x.choices || C.choices).map(([v, w, c]) => `<button type="button" data-i="${i}" data-v="${v}" data-c="${c}" aria-pressed="${s.v === v}">${esc(w)}</button>`).join("")}</div>
+      <label for="n${i}">${esc(C.noteLabel)}</label>
+      <textarea id="n${i}" data-i="${i}" placeholder="${esc(C.notePlaceholder)}">${esc(s.note || "")}</textarea>
+      ${C.form ? `<p class="small" id="saved" role="status" aria-live="polite" style="margin:8px 0 0"></p>` : ""}
+    </div>`;
+}
+function lastSlide() {
+  return `<div class="kicker">Send your feedback</div>
+    <h2>You marked ${marked()} of ${L.length} ${C.nouns}</h2>
+    <ul class="marks">${L.map((x, i) => {
+      const v = state[i]?.v;
+      return `<li><a href="#${i + 1}">${i + 1}. ${esc(x.title)}</a><span class="tag ${v ? colorOf(i, v) : "none"}">${v ? esc(labelOf(i, v)) : "Not marked"}</span></li>`;
+    }).join("")}</ul>
+    ${C.form ? `<p class="say">Your answers saved for Will as you clicked them. You do not need to send anything.</p>` : ""}
+    ${nameField()}
+    <p style="margin-top:14px"><button class="big" id="copy" type="button">Copy my feedback</button><span class="done" id="done" role="status" aria-live="polite"></span></p>
+    <p class="small">${C.form ? "To also send it in Slack, paste it to Will there." : "Then paste it to Will in Slack."}</p>`;
+}
+function dots() {
+  const d = [`<button type="button" data-go="0" aria-label="Start" ${at === 0 ? 'aria-current="true"' : ""}></button>`];
+  L.forEach((_, i) => d.push(`<button type="button" data-go="${i + 1}" class="${state[i]?.v ? colorOf(i, state[i].v) : ""}" aria-label="${C.noun} ${i + 1}" ${at === i + 1 ? 'aria-current="true"' : ""}></button>`));
+  d.push(`<button type="button" data-go="${LAST}" aria-label="Send your feedback" ${at === LAST ? 'aria-current="true"' : ""}></button>`);
+  document.getElementById("dots").innerHTML = d.join("");
+}
+function where() {
+  document.getElementById("where").textContent = at === 0 ? "Start" : at === LAST ? "Send your feedback" : `${C.noun} ${at} of ${L.length} · ${marked()} marked`;
+}
+function show(n) {
+  at = Math.max(0, Math.min(LAST, n));
+  document.getElementById("slide").innerHTML = at === 0 ? C.start.replace("<!--name-->", nameField()) : at === LAST ? lastSlide() : itemSlide(at - 1);
+  document.getElementById("back").disabled = at === 0;
+  const next = document.getElementById("next");
+  next.disabled = at === LAST;
+  next.textContent = at === L.length ? "Finish ›" : "Next ›";
+  where(); dots();
+  scrollTo(0, 0);
+  if (location.hash !== `#${at}`) history.replaceState(null, "", `#${at}`);
+  console.log("[review] slide", { page: C.key, at, tab, marked: marked() });
+}
+const go = n => show(n);
+document.getElementById("back").addEventListener("click", () => go(at - 1));
+document.getElementById("next").addEventListener("click", () => go(at + 1));
+addEventListener("hashchange", () => { const n = parseInt(location.hash.slice(1), 10); if (!Number.isNaN(n) && n !== at) show(n); });
+// The left and right arrows move the slides (decks get the arrow keys), but never while someone types.
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  if (e.key === "ArrowRight") { e.preventDefault(); go(at + 1); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); go(at - 1); }
+});
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]");
+  if (g) { go(+g.dataset.go); return; }
+  const tb = e.target.closest("[data-tab]");
+  if (tb) {
+    tab = tb.dataset.tab;
+    const y = scrollY;
+    show(at);
+    scrollTo(0, Math.min(y, 120));
+    return;
+  }
+  const b = e.target.closest(".choices button");
+  if (b) {
+    const i = +b.dataset.i;
+    state[i] = { ...(state[i] || {}), v: b.dataset.v };
+    b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    save(); dots(); where();
+    sendItem(i, 0);
+    console.log("[review] marked", { page: C.key, item: i + 1, ref: L[i].ref, choice: b.dataset.v });
+  }
+  if (e.target.id === "copy") copy();
+});
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea[data-i]")) { const i = +e.target.dataset.i; state[i] = { ...(state[i] || {}), note: e.target.value }; save(); sendItem(i, 1500); }
+  if (e.target.id === "name") {
+    state.name = e.target.value; save();
+    clearTimeout(timers.name);
+    timers.name = setTimeout(() => send("(the reader's name)", "", ""), 1500);
+  }
+});
+function text() {
+  const who = (state.name || "").trim() || "(no name)";
+  const lines = [`${C.head}: feedback from ${who}`];
+  L.forEach((x, i) => {
+    const s = state[i] || {};
+    lines.push(`${i + 1}. ${x.title} (${x.ref}): ${s.v ? labelOf(i, s.v) : "not marked"}`);
+    if ((s.note || "").trim()) lines.push(`   ${s.note.trim().replace(/\n+/g, " / ")}`);
+  });
+  lines.push(`Marked ${marked()} of ${L.length}.`);
+  return lines.join("\n");
+}
+async function copy() {
+  const t = text(), done = document.getElementById("done");
+  try {
+    await navigator.clipboard.writeText(t);
+  } catch (e) {
+    // Older browsers: copy through a hidden text box.
+    const ta = Object.assign(document.createElement("textarea"), { value: t });
+    document.body.append(ta); ta.select(); document.execCommand("copy"); ta.remove();
+    console.warn("[review] clipboard API failed; used the fallback", e);
+  }
+  done.textContent = "Copied. Paste it to Will.";
+  console.log("[review] feedback copied", { page: C.key, chars: t.length, marked: marked() });
+}
+// The module menu closes on a click anywhere else.
+document.addEventListener("click", ev => { const m = document.querySelector("details.mods"); if (m && m.open && !m.contains(ev.target)) m.open = false; });
+const start = parseInt(location.hash.slice(1), 10);
+show(Number.isNaN(start) ? 0 : start);
+console.log("[review] page ready", { page: C.key, items: L.length });
+</script>
+</body>
+</html>

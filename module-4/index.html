@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Free report: module 4</title>
+<style>
+:root { --bg: #fff; --ink: #1f1d1a; --ink2: #47443f; --dim: #7a756c; --line: #e6e2db; --soft: #f5f3ef;
+  --accent: #2a6fd6; --ok: #1f9d63; --mid: #b8761a; --bad: #c63b3b; --sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { margin: 0; color: var(--ink); font: 16px/1.55 var(--sans); }
+.top { position: sticky; top: 0; z-index: 2; background: var(--bg); border-bottom: 1px solid var(--line); }
+.top .in { max-width: 780px; margin: 0 auto; padding: 8px 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 12px; }
+.site { display: flex; gap: 4px; }
+.site a { font-size: 14px; font-weight: 650; text-decoration: none; color: var(--dim); padding: 6px 10px; border-radius: 8px; }
+.site a.on { color: var(--ink); background: var(--soft); }
+#where { color: var(--dim); font-size: 13.5px; white-space: nowrap; }
+main { max-width: 780px; margin: 0 auto; padding: 22px 16px 130px; }
+h1 { font-size: clamp(26px, 4.4vw, 36px); line-height: 1.18; margin: 8px 0 14px; letter-spacing: -.01em; }
+h2 { font-size: clamp(20px, 3vw, 24px); line-height: 1.25; margin: 2px 0 10px; }
+h3 { font-size: 12.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); margin: 22px 0 8px; }
+h3.first { margin-top: 0; }
+.kicker { font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--dim); }
+.lede { color: var(--ink2); font-size: 17px; margin: 0 0 12px; }
+.steps { padding-left: 22px; color: var(--ink2); font-size: 16.5px; }
+.steps li { margin: 6px 0; }
+.small { color: var(--dim); font-size: 13.5px; }
+.say { color: var(--ink2); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; margin: 6px 0 18px; }
+.seg button { border: 0; background: var(--bg); padding: 8px 14px; font: 600 14px var(--sans); color: var(--dim); cursor: pointer; min-height: 38px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on { background: var(--ink); color: #fff; }
+.ptext { white-space: pre-wrap; color: var(--ink2); font-size: 15.5px; overflow-wrap: anywhere; }
+.qs { padding-left: 20px; color: var(--ink2); }
+.qs li { margin: 4px 0; }
+a { color: var(--accent); }
+a.ext { font-weight: 600; text-decoration: none; }
+.letter { white-space: pre-wrap; font-size: 16.5px; line-height: 1.62; border-left: 3px solid var(--accent); padding: 2px 0 2px 16px; overflow-wrap: anywhere; }
+.qa { margin: 0 0 12px; }
+.qa .q { font-weight: 650; margin: 0 0 3px; }
+.qa .a { margin: 0; color: var(--ink2); }
+.box { white-space: pre-wrap; background: var(--soft); border-radius: 10px; padding: 12px; font-size: 14px; color: var(--ink2); overflow-wrap: anywhere; }
+details.fold summary { cursor: pointer; color: var(--accent); font-weight: 600; margin: 4px 0 8px; }
+.verdict { display: inline-block; font-weight: 700; font-size: 15px; padding: 6px 12px; border-radius: 999px; color: #fff; margin: 0 0 12px; }
+.verdict.ok { background: var(--ok); } .verdict.bad { background: var(--bad); }
+blockquote { margin: 0 0 14px; padding: 10px 14px; background: var(--soft); border-radius: 10px; color: var(--ink2); }
+.why { padding-left: 20px; color: var(--ink2); }
+.why li { margin: 6px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 6px 0 18px; }
+.stat { background: var(--soft); border-radius: 12px; padding: 12px; }
+.stat b { display: block; font-size: 26px; line-height: 1.1; }
+.stat span { color: var(--ink2); font-size: 14px; }
+table.reasons { border-collapse: collapse; width: 100%; margin: 4px 0 16px; font-size: 15px; }
+table.reasons td { padding: 6px 4px; border-bottom: 1px solid var(--line); color: var(--ink2); }
+table.reasons td.n { text-align: right; font-weight: 700; color: var(--ink); width: 4em; }
+.fb { background: var(--soft); border-radius: 14px; padding: 16px; margin-top: 24px; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; }
+.choices button { font: 600 14.5px var(--sans); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; min-height: 42px; }
+.choices button[aria-pressed="true"][data-c="ok"] { background: var(--ok); border-color: var(--ok); color: #fff; }
+.choices button[aria-pressed="true"][data-c="mid"] { background: var(--mid); border-color: var(--mid); color: #fff; }
+.choices button[aria-pressed="true"][data-c="bad"] { background: var(--bad); border-color: var(--bad); color: #fff; }
+label { font-weight: 600; font-size: 14.5px; display: block; margin-bottom: 6px; }
+textarea, input[type=text] { width: 100%; font: 15px/1.45 var(--sans); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+textarea { min-height: 80px; resize: vertical; }
+.marks { list-style: none; padding: 0; margin: 10px 0 18px; }
+.marks li { display: flex; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.marks a { color: var(--ink); text-decoration: none; flex: 1; }
+.marks a:hover { text-decoration: underline; }
+.tag { font-size: 13px; font-weight: 700; white-space: nowrap; }
+.tag.ok { color: var(--ok); } .tag.mid { color: var(--mid); } .tag.bad { color: var(--bad); } .tag.none { color: var(--dim); font-weight: 500; }
+.big { font: 700 16px var(--sans); background: var(--ink); color: #fff; border: 0; border-radius: 12px; padding: 13px 20px; cursor: pointer; min-height: 48px; }
+.done { color: var(--ok); font-weight: 600; margin-left: 10px; }
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 2; background: var(--bg); border-top: 1px solid var(--line); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+.nav .in { max-width: 780px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; }
+.nav button.step { font: 600 15px var(--sans); border-radius: 10px; padding: 10px 16px; min-height: 44px; cursor: pointer; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.nav button.step.next { background: var(--ink); color: #fff; border-color: var(--ink); }
+.nav button.step:disabled { opacity: .35; cursor: default; }
+.dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; }
+.dots button { width: 12px; height: 12px; border-radius: 50%; border: 0; padding: 0; background: var(--line); cursor: pointer; }
+.dots button.ok { background: var(--ok); } .dots button.mid { background: var(--mid); } .dots button.bad { background: var(--bad); }
+.dots button[aria-current="true"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* Phones: the dots stay on one row between Back and Next. */
+@media (max-width: 480px) { .dots { gap: 5px; } .dots button { width: 9px; height: 9px; } .nav button.step { padding: 10px 12px; } .site a { padding: 6px 8px; } }
+/* Module pages: tables, bars, the module menu, pictures and the map (real numbers only). */
+table.grid { border-collapse: collapse; width: 100%; margin: 4px 0 14px; font-size: 14px; }
+table.grid th { text-align: left; font-size: 11.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--dim); padding: 6px 4px; border-bottom: 1px solid var(--line); }
+table.grid td { padding: 6px 4px; border-bottom: 1px solid var(--line); color: var(--ink2); vertical-align: top; overflow-wrap: anywhere; }
+table.reasons td:first-child { color: var(--ink); }
+.bars { display: grid; gap: 4px; margin: 4px 0 12px; }
+.bar { display: grid; grid-template-columns: 74px 1fr 64px; gap: 8px; align-items: center; font-size: 13.5px; }
+.bars.wide .bar { grid-template-columns: minmax(120px, 230px) 1fr 54px; }
+.bar i { display: block; height: 12px; width: var(--w); background: var(--accent); border-radius: 6px; }
+.bar.hi i, .bar.mid i { background: var(--mid); } .bar.bad i { background: var(--bad); } .bar.good i { background: var(--ok); }
+.bar b { text-align: right; font-variant-numeric: tabular-nums; }
+.note { background: #fff7e8; border-left: 3px solid var(--mid); border-radius: 8px; padding: 10px 12px; color: var(--ink2); font-size: 15px; }
+.tag { margin-right: 4px; }
+.mods { position: relative; }
+.mods summary { list-style: none; cursor: pointer; font-size: 14px; font-weight: 650; padding: 6px 10px; border-radius: 8px; background: var(--soft); color: var(--ink); }
+.mods summary::-webkit-details-marker { display: none; }
+.mods summary::after { content: " \25BE"; color: var(--dim); }
+.mods .menu { position: absolute; top: calc(100% + 6px); left: 0; z-index: 5; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); padding: 6px; min-width: 230px; display: grid; }
+.site .mods .menu a { padding: 9px 10px; border-radius: 8px; color: var(--ink); font-size: 14.5px; }
+.site .mods .menu a:hover { background: var(--soft); }
+.site .mods .menu a[aria-current="page"] { background: var(--soft); font-weight: 750; }
+.shots { display: grid; gap: 10px; margin: 6px 0 14px; }
+.shots.two { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.shots img, img.shot { width: 100%; border: 1px solid var(--line); border-radius: 10px; display: block; }
+figure { margin: 0; } figcaption { font-size: 13px; color: var(--dim); margin-top: 4px; }
+.ads { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 6px 0 14px; }
+.adcard { border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 6px; align-content: start; font-size: 13.5px; }
+.adcard img.adpic { width: 100%; max-height: 260px; object-fit: contain; background: var(--soft); border-radius: 8px; }
+.adcard .meta { color: var(--dim); font-size: 12.5px; } .adcard .words { color: var(--ink2); }
+.adcard ul.lines { list-style: none; padding: 0; margin: 0; font-size: 12.5px; }
+.adcard ul.lines li.y::before { content: "\2713 "; color: var(--ok); font-weight: 700; }
+.adcard ul.lines li.n::before { content: "\2717 "; color: var(--bad); font-weight: 700; }
+.serpad { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; font-family: Arial, var(--sans); }
+.serpad .spon { font-size: 12px; font-weight: 700; color: var(--ink); } .serpad .who { font-size: 13px; color: var(--ink); } .serpad .who span { color: var(--dim); }
+.serpad .hl { color: #1a0dab; font-size: 18px; line-height: 1.3; margin: 2px 0 4px; } .serpad .desc { font-size: 13.5px; color: #4d5156; } .serpad .ext { font-size: 12.5px; color: #1a0dab; margin-top: 4px; }
+svg.map { width: 100%; height: auto; display: block; margin: 6px 0 4px; }
+svg.map rect { fill: var(--soft); }
+svg.map circle.pg { fill: #2a6fd6; opacity: .85; } svg.map circle.pm { fill: #7b4fd6; opacity: .85; }
+svg.map circle.pb { fill: #2a6fd6; stroke: #7b4fd6; stroke-width: 4; opacity: .9; }
+svg.map text { font: 600 11px var(--sans); fill: var(--ink2); text-anchor: middle; }
+.sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin: 0 3px 0 8px; vertical-align: -1px; }
+.sw.pg { background: #2a6fd6; } .sw.pm { background: #7b4fd6; } .sw.pb { background: #2a6fd6; box-shadow: 0 0 0 3px #7b4fd6 inset; }
+</style>
+</head>
+<body>
+<div class="top"><div class="in"><nav class="site" aria-label="Pages"><a href="../">The plan</a><details class="mods"><summary>Module 4 · Page speed</summary><div class="menu"><a href="../module-1/">1 · Search volume</a><a href="../module-2/">2 · Who advertises</a><a href="../module-3/">3 · Competitor ads</a><a href="../module-4/" aria-current="page">4 · Page speed</a><a href="../module-5/">5 · Shopping</a><a href="../module-6/">6 · Tracking</a><a href="../module-7/">7 · Reviews</a></div></details></nav><span id="where"></span></div></div>
+<main id="slide" tabindex="-1"></main>
+<nav class="nav" aria-label="Slides"><div class="in">
+  <button class="step" id="back" type="button">‹ Back</button>
+  <div class="dots" id="dots"></div>
+  <button class="step next" id="next" type="button">Next ›</button>
+</div></nav>
+<script id="config" type="application/json">{"key": "free-report-module-4-2026-11-05", "noun": "Slide", "nouns": "slides", "tab": "in", "head": "Free report module 4 (page speed)", "form": null, "question": "Is this read right?", "noteLabel": "What would you change? (optional)", "notePlaceholder": "A finding that is wrong, a number that looks off, something we missed...", "choices": [["right", "Right", "ok"], ["fix", "Right, with changes", "mid"], ["wrong", "Wrong", "bad"]], "start": "<div class=\"kicker\">Free report · Module 4 · Nov 5, 2026<\/div>\n<h1>Page speed on 3 real leads<\/h1>\n<p class=\"lede\">Module 4 ran on 2 real Utah plumbers and an online store. Each slide shows the pages we tested, the results, and what the report says.<\/p>\n<ol class=\"steps\"><li>Read each slide's tabs, left to right.<\/li><li>Mark each slide, and write what to change.<\/li><li>The last slide is decision #9 (Google's speed quota).<\/li>\n<li>On the last slide, copy your feedback and send it to Will.<\/li><\/ol>\n<p class=\"small\">Every number comes from last night's real runs. No business was contacted. Use the Module menu at the top to move between modules.<\/p>"}</script>
+<script id="items" type="application/json">[{"ref": "Lead 1", "title": "Plumbing Utah · Sandy, UT", "kicker": "Runs Google ads", "tabs": [["in", "Pages tested", "<table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Address<\/th><th>Data<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td><a href=\"https://www.plumbingutah.com/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/<\/a><\/td><td>test, middle of 3 phone runs<\/td><\/tr><tr><td>You<\/td><td>top service page (Plumbing)<\/td><td><a href=\"https://www.plumbingutah.com/plumber-services/\" target=\"_blank\" rel=\"noopener\">www.plumbingutah.com/plumber-services/<\/a><\/td><td>test, middle of 3 phone runs<\/td><\/tr><tr><td>Drain Bros Drain Cleaning &amp; Jetting LLC<\/td><td>home page<\/td><td><a href=\"https://drainbrosutah.com/\" target=\"_blank\" rel=\"noopener\">drainbrosutah.com/<\/a><\/td><td>test, middle of 3 phone runs<\/td><\/tr><tr><td>Glacier Plumbing and Hydronics<\/td><td>home page<\/td><td><a href=\"https://glacierplumbingandhydronics.com/\" target=\"_blank\" rel=\"noopener\">glacierplumbingandhydronics.com/<\/a><\/td><td>real visitors, whole site, past 28 days<\/td><\/tr><tr><td>SameDay Heating &amp; Air, Plumbing, and Electrical<\/td><td>home page<\/td><td><a href=\"https://samedayutah.com/\" target=\"_blank\" rel=\"noopener\">samedayutah.com/<\/a><\/td><td>real visitors, this page, past 28 days<\/td><\/tr><\/table><p class=\"small\">Source: Google's PageSpeed API (free). Real visitors (past 28 days) come first; with none, the middle of 3 phone tests, labelled \"test\". The ad's own page is read from its link, never by a click.<\/p>"], ["res", "The results", "<h3 class=\"first\">Time until the main content shows, on a phone<\/h3><div class=\"bars wide\"><div class=\"bar mid\"><span>You: home page<\/span><i style=\"--w:14.0%\"><\/i><b>3.9 s<\/b><\/div><div class=\"bar bad\"><span>You: top service page (Plumbing)<\/span><i style=\"--w:32.4%\"><\/i><b>9.0 s<\/b><\/div><div class=\"bar bad\"><span>Drain Bros Drain Cleaning &amp; Jetting LLC: home page<\/span><i style=\"--w:100.0%\"><\/i><b>27.8 s<\/b><\/div><div class=\"bar mid\"><span>Glacier Plumbing and Hydronics: home page<\/span><i style=\"--w:10.0%\"><\/i><b>2.8 s<\/b><\/div><div class=\"bar good\"><span>SameDay Heating &amp; Air, Plumbing, and Electrical: home page<\/span><i style=\"--w:7.4%\"><\/i><b>2.1 s<\/b><\/div><\/div><p class=\"small\">Good is 2.5 s or less; poor is more than 4 s (Google).<\/p><table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Main content (LCP)<\/th><th>Tap (INP)<\/th><th>Layout (CLS)<\/th><th>Poor on<\/th><th>3 test runs<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td>3.9 s<\/td><td><span class=\"small\">real visitors only<\/span><\/td><td>0.05<\/td><td>nothing<\/td><td>3.9, 3.9, 5.9<\/td><\/tr><tr><td>You<\/td><td>top service page (Plumbing)<\/td><td>9.0 s<\/td><td><span class=\"small\">real visitors only<\/span><\/td><td>0.05<\/td><td>main content<\/td><td>7.8, 9.0, 9.0<\/td><\/tr><tr><td>Drain Bros Drain Cleaning &amp; Jetting LLC<\/td><td>home page<\/td><td>27.8 s<\/td><td><span class=\"small\">real visitors only<\/span><\/td><td>0.39<\/td><td>main content, layout<\/td><td>25.7, 27.8, 28.3<\/td><\/tr><tr><td>Glacier Plumbing and Hydronics<\/td><td>home page<\/td><td>2.8 s<\/td><td>0.18 s<\/td><td>0.00<\/td><td>nothing<\/td><td>17.4<\/td><\/tr><tr><td>SameDay Heating &amp; Air, Plumbing, and Electrical<\/td><td>home page<\/td><td>2.1 s<\/td><td>0.17 s<\/td><td>0.00<\/td><td>nothing<\/td><td>15.4<\/td><\/tr><\/table><p class=\"note\"><b>Check this:<\/b> test results vary run to run (Plumbing Utah's home page read 4.8 s, 4.1 s and 3.9 s on three runs last night). That is why the module takes the middle of 3, and why real-visitor data wins when a site has it.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Your home page is not slow on a phone: its main content shows in 3.9 seconds (needs work).<\/li><li><span class=\"tag ok\">Seen<\/span> Your top service page (Plumbing) takes 9.0 seconds to show its main content on a phone. Google calls more than 4 seconds &quot;poor&quot;.<\/li><li><span class=\"tag ok\">Seen<\/span> Drain Bros Drain Cleaning &amp; Jetting LLC&#x27;s home page takes 27.8 seconds to show its main content on a phone. Google calls more than 4 seconds &quot;poor&quot;. Drain Bros Drain Cleaning &amp; Jetting LLC&#x27;s home page moves its layout by 0.39 as it loads on a phone. Google calls more than 0.25 &quot;poor&quot;.<\/li><li><span class=\"tag ok\">Seen<\/span> Glacier Plumbing and Hydronics&#x27;s home page is not slow on a phone: its main content shows in 2.8 seconds (needs work).<\/li><li><span class=\"tag ok\">Seen<\/span> SameDay Heating &amp; Air, Plumbing, and Electrical&#x27;s home page is not slow on a phone: its main content shows in 2.1 seconds (good).<\/li><li><span class=\"tag ok\">Seen<\/span> Your home page is the third fastest of 4 on a phone, against the top competitors&#x27; pages (time until the main content shows).<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Top service page: the first link on the home page that names a service, as Jev read the links (26 of them name one).<\/li><li>Google&#x27;s PageSpeed test as a phone (free). Real-visitor data (Chrome users, past 28 days) first: the page&#x27;s own, else the whole site&#x27;s. With none, 3 phone tests and the middle one, labelled &quot;test&quot;.<\/li><li>We read the pages&#x27; addresses; we never click an ad. Google&#x27;s servers load each page, not ours.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 (Google PageSpeed (free) $0.0000 (11 calls); Jev (TypeSafe) $0.0000 (1 calls)) · 102 seconds · read Nov 5, 2026 · checks: 7 pass, 1 warning (The test page is the page the ad sends people to).<\/p>"]]}, {"ref": "Lead 2", "title": "Top Shelf Plumbing Pros · Sandy, UT", "kicker": "Runs one Meta ad, no Google ads", "tabs": [["in", "Pages tested", "<table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Address<\/th><th>Data<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td><a href=\"https://topshelfplumbingsandy.com/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/<\/a><\/td><td>test, middle of 3 phone runs<\/td><\/tr><tr><td>You<\/td><td>top service page (Book a Plumber now)<\/td><td><a href=\"https://topshelfplumbingsandy.com/contact/\" target=\"_blank\" rel=\"noopener\">topshelfplumbingsandy.com/contact/<\/a><\/td><td>test, middle of 3 phone runs<\/td><\/tr><tr><td>Roto-Rooter Plumbing &amp; Water Cleanup of Salt Lake City<\/td><td>home page<\/td><td><a href=\"https://rotorooter.com/\" target=\"_blank\" rel=\"noopener\">rotorooter.com/<\/a><\/td><td>real visitors, this page, past 28 days<\/td><\/tr><tr><td>SameDay Heating &amp; Air, Plumbing, and Electrical<\/td><td>home page<\/td><td><a href=\"https://samedayutah.com/\" target=\"_blank\" rel=\"noopener\">samedayutah.com/<\/a><\/td><td>real visitors, this page, past 28 days<\/td><\/tr><tr><td>Western Heating, Air &amp; Plumbing<\/td><td>home page<\/td><td><a href=\"https://westernheatingair.com/\" target=\"_blank\" rel=\"noopener\">westernheatingair.com/<\/a><\/td><td>real visitors, this page, past 28 days<\/td><\/tr><\/table><p class=\"small\">Source: Google's PageSpeed API (free). Real visitors (past 28 days) come first; with none, the middle of 3 phone tests, labelled \"test\". The ad's own page is read from its link, never by a click.<\/p>"], ["res", "The results", "<h3 class=\"first\">Time until the main content shows, on a phone<\/h3><div class=\"bars wide\"><div class=\"bar mid\"><span>You: home page<\/span><i style=\"--w:36.9%\"><\/i><b>3.0 s<\/b><\/div><div class=\"bar bad\"><span>You: top service page (Book a Plumber now)<\/span><i style=\"--w:50.9%\"><\/i><b>4.1 s<\/b><\/div><div class=\"bar good\"><span>Roto-Rooter Plumbing &amp; Water Cleanup of Salt Lake City: home page<\/span><i style=\"--w:27.4%\"><\/i><b>2.2 s<\/b><\/div><div class=\"bar good\"><span>SameDay Heating &amp; Air, Plumbing, and Electrical: home page<\/span><i style=\"--w:25.8%\"><\/i><b>2.1 s<\/b><\/div><div class=\"bar mid\"><span>Western Heating, Air &amp; Plumbing: home page<\/span><i style=\"--w:46.1%\"><\/i><b>3.7 s<\/b><\/div><\/div><p class=\"small\">Good is 2.5 s or less; poor is more than 4 s (Google).<\/p><table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Main content (LCP)<\/th><th>Tap (INP)<\/th><th>Layout (CLS)<\/th><th>Poor on<\/th><th>3 test runs<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td>3.0 s<\/td><td><span class=\"small\">real visitors only<\/span><\/td><td>0.00<\/td><td>nothing<\/td><td>3.0, 3.0, 3.2<\/td><\/tr><tr><td>You<\/td><td>top service page (Book a Plumber now)<\/td><td>4.1 s<\/td><td><span class=\"small\">real visitors only<\/span><\/td><td>0.04<\/td><td>main content<\/td><td>4.1, 4.1, 17.1<\/td><\/tr><tr><td>Roto-Rooter Plumbing &amp; Water Cleanup of Salt Lake City<\/td><td>home page<\/td><td>2.2 s<\/td><td>0.21 s<\/td><td>0.03<\/td><td>nothing<\/td><td>4.6<\/td><\/tr><tr><td>SameDay Heating &amp; Air, Plumbing, and Electrical<\/td><td>home page<\/td><td>2.1 s<\/td><td>0.17 s<\/td><td>0.00<\/td><td>nothing<\/td><td>15.4<\/td><\/tr><tr><td>Western Heating, Air &amp; Plumbing<\/td><td>home page<\/td><td>3.7 s<\/td><td>0.21 s<\/td><td>0.00<\/td><td>nothing<\/td><td>14.9<\/td><\/tr><\/table><p class=\"note\"><b>Check this:<\/b> test results vary run to run (Plumbing Utah's home page read 4.8 s, 4.1 s and 3.9 s on three runs last night). That is why the module takes the middle of 3, and why real-visitor data wins when a site has it.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Your home page is not slow on a phone: its main content shows in 3.0 seconds (needs work).<\/li><li><span class=\"tag ok\">Seen<\/span> Your top service page (Book a Plumber now) takes 4.1 seconds to show its main content on a phone. Google calls more than 4 seconds &quot;poor&quot;.<\/li><li><span class=\"tag ok\">Seen<\/span> Roto-Rooter Plumbing &amp; Water Cleanup of Salt Lake City&#x27;s home page is not slow on a phone: its main content shows in 2.2 seconds (good).<\/li><li><span class=\"tag ok\">Seen<\/span> SameDay Heating &amp; Air, Plumbing, and Electrical&#x27;s home page is not slow on a phone: its main content shows in 2.1 seconds (good).<\/li><li><span class=\"tag ok\">Seen<\/span> Western Heating, Air &amp; Plumbing&#x27;s home page is not slow on a phone: its main content shows in 3.7 seconds (needs work).<\/li><li><span class=\"tag ok\">Seen<\/span> Your home page is number 3 of 4 from the fastest on a phone, against the top competitors&#x27; pages (time until the main content shows).<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Top service page: the first link on the home page that names a service, as Jev read the links (21 of them name one).<\/li><li>Google&#x27;s PageSpeed test as a phone (free). Real-visitor data (Chrome users, past 28 days) first: the page&#x27;s own, else the whole site&#x27;s. With none, 3 phone tests and the middle one, labelled &quot;test&quot;.<\/li><li>We read the pages&#x27; addresses; we never click an ad. Google&#x27;s servers load each page, not ours.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 (Google PageSpeed (free) $0.0000 (9 calls); Jev (TypeSafe) $0.0000 (1 calls)) · 55 seconds · read Nov 5, 2026 · checks: 7 pass, 1 warning (The test page is the page the ad sends people to).<\/p>"]]}, {"ref": "Lead 3", "title": "Appalachian Outdoors · State College, PA", "kicker": "An online store", "tabs": [["in", "Pages tested", "<table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Address<\/th><th>Data<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td><a href=\"https://appoutdoors.com/\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/<\/a><\/td><td>real visitors, this page, past 28 days<\/td><\/tr><tr><td>You<\/td><td>top service page (Men)<\/td><td><a href=\"https://appoutdoors.com/collections/mens\" target=\"_blank\" rel=\"noopener\">appoutdoors.com/collections/mens<\/a><\/td><td>real visitors, whole site, past 28 days<\/td><\/tr><\/table><p class=\"small\">Source: Google's PageSpeed API (free). Real visitors (past 28 days) come first; with none, the middle of 3 phone tests, labelled \"test\". The ad's own page is read from its link, never by a click.<\/p>"], ["res", "The results", "<h3 class=\"first\">Time until the main content shows, on a phone<\/h3><div class=\"bars wide\"><div class=\"bar good\"><span>You: home page<\/span><i style=\"--w:24.7%\"><\/i><b>2.0 s<\/b><\/div><div class=\"bar good\"><span>You: top service page (Men)<\/span><i style=\"--w:16.5%\"><\/i><b>1.3 s<\/b><\/div><\/div><p class=\"small\">Good is 2.5 s or less; poor is more than 4 s (Google).<\/p><table class=\"grid\"><tr><th>Who<\/th><th>Page<\/th><th>Main content (LCP)<\/th><th>Tap (INP)<\/th><th>Layout (CLS)<\/th><th>Poor on<\/th><th>3 test runs<\/th><\/tr><tr><td>You<\/td><td>home page<\/td><td>2.0 s<\/td><td>0.09 s<\/td><td>0.00<\/td><td>nothing<\/td><td>7.6<\/td><\/tr><tr><td>You<\/td><td>top service page (Men)<\/td><td>1.3 s<\/td><td>0.09 s<\/td><td>0.00<\/td><td>nothing<\/td><td>18.3<\/td><\/tr><\/table><p class=\"note\"><b>Check this:<\/b> test results vary run to run (Plumbing Utah's home page read 4.8 s, 4.1 s and 3.9 s on three runs last night). That is why the module takes the middle of 3, and why real-visitor data wins when a site has it.<\/p>"], ["report", "What the report says", "<h3 class=\"first\">What the report says<\/h3><ul class=\"why\"><li><span class=\"tag ok\">Seen<\/span> Your home page is not slow on a phone: its main content shows in 2.0 seconds (good).<\/li><li><span class=\"tag ok\">Seen<\/span> Your top service page (Men) is not slow on a phone: its main content shows in 1.3 seconds (good).<\/li><\/ul><h3>Could not read<\/h3><ul class=\"why\"><li>The page your ads link to, and the top 3 competitors&#x27; pages: no advertisers file for appoutdoors.com yet. Run `verify free-report advertisers --site appoutdoors.com` first<\/li><\/ul><h3>How it read<\/h3><ul class=\"why\"><li>Top service page: the first link on the home page that names a service, as Jev read the links (39 of them name one).<\/li><li>Google&#x27;s PageSpeed test as a phone (free). Real-visitor data (Chrome users, past 28 days) first: the page&#x27;s own, else the whole site&#x27;s. With none, 3 phone tests and the middle one, labelled &quot;test&quot;.<\/li><li>We read the pages&#x27; addresses; we never click an ad. Google&#x27;s servers load each page, not ours.<\/li><\/ul><h3>The run<\/h3><p class=\"small\">Cost $0.0000 (Google PageSpeed (free) $0.0000 (2 calls); Jev (TypeSafe) $0.0000 (1 calls)) · 29 seconds · read Nov 5, 2026 · checks: 6 pass, 2 warning (The test page is the page the ad sends people to, The top 3 competitors&#x27; pages are tested the same way).<\/p>"]]}, {"ref": "Decision 9", "title": "Google's speed quota", "kicker": "Decision #9", "question": "What do we do about Google's per-minute quota?", "choices": [["key", "A second free API key, only for the free report ★", "ok"], ["wait", "Keep the waits (a run can take 4 minutes)", "mid"]], "tabs": [["why", "Why it matters", "<p class=\"say\">Google answered \"quota exceeded per minute\" while another program used the same key. The module waits 30 seconds, then 65 seconds, and tries again. A second key is free and keeps runs short.<\/p>"]]}]</script>
+<script>
+const C = JSON.parse(document.getElementById("config").textContent);
+const L = JSON.parse(document.getElementById("items").textContent);
+const COLOR = Object.fromEntries(C.choices.map(([v, , c]) => [v, c]));
+const LABEL = Object.fromEntries(C.choices.map(([v, t]) => [v, t]));
+// A slide may carry its own question and choices (a decision); every other slide uses the page's.
+const pick = (i, v) => ((L[i] && L[i].choices) || C.choices).find(c => c[0] === v) || [];
+const colorOf = (i, v) => pick(i, v)[2] || "";
+const labelOf = (i, v) => pick(i, v)[1] || "";
+const LAST = L.length + 1;   // slide 0: the start; 1 to L.length: the items; LAST: send the feedback
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+// A reader's marks, kept in their own browser (a convenience: the page works without it).
+let state = {};
+try { state = JSON.parse(localStorage.getItem(C.key) || "{}") || {}; } catch (e) { console.warn("[review] storage not readable", e); }
+const save = () => { try { localStorage.setItem(C.key, JSON.stringify(state)); } catch (e) { console.warn("[review] storage not writable", e); } };
+const marked = () => L.filter((_, i) => state[i]?.v).length;
+let at = 0, tab = C.tab;
+
+// Will's Google Form (Nov 5, "2"): each answer saves for Will as the reader clicks it. The form takes a plain POST with
+// no login. A no-cors POST hides the reply, so a network error is the only failure the page can see.
+let reader = "";
+try {
+  reader = localStorage.getItem("review-reader") || "";
+  if (!reader) { reader = "r" + Math.random().toString(36).slice(2, 8); localStorage.setItem("review-reader", reader); }
+} catch (e) { reader = "r" + Math.random().toString(36).slice(2, 8); }
+const timers = {};
+const status = msg => { const el = document.getElementById("saved"); if (el) el.textContent = msg; };
+async function send(item, choice, note) {
+  if (!C.form) return;
+  const f = C.form.entries, body = new URLSearchParams();
+  body.set(f.page, C.head); body.set(f.item, item); body.set(f.choice, choice || ""); body.set(f.note, note || "");
+  body.set(f.name, (state.name || "").trim()); body.set(f.reader, reader);
+  status("Saving...");
+  const t = performance.now();
+  try {
+    await fetch(C.form.post, { method: "POST", mode: "no-cors", body });
+    status("Saved for Will.");
+    console.log("[review] saved", { page: C.key, item, choice, ms: Math.round(performance.now() - t) });
+  } catch (e) {
+    status("Not saved. Use Copy my feedback on the last slide.");
+    console.error("[review] save failed", { page: C.key, item, error: String(e) });
+  }
+}
+const itemLabel = i => `${C.noun} ${i + 1}: ${L[i].title} (${L[i].ref})`;
+function sendItem(i, wait) {
+  clearTimeout(timers[i]);
+  timers[i] = setTimeout(() => { const s = state[i] || {}; send(itemLabel(i), s.v ? labelOf(i, s.v) : "", s.note); }, wait);
+}
+const nameField = () => `<label for="name">Your name</label>
+  <input type="text" id="name" placeholder="Your name" autocomplete="name" value="${esc(state.name || "")}">`;
+
+function itemSlide(i) {
+  const x = L[i], s = state[i] || {};
+  const t = x.tabs.find(([k]) => k === tab) || x.tabs[0];
+  return `<div class="kicker">${C.noun} ${i + 1} of ${L.length}${x.kicker ? ` · ${esc(x.kicker)}` : ""}</div>
+    <h2>${esc(x.title)}</h2>
+    <div class="seg" role="tablist">${x.tabs.map(([k, w]) => `<button type="button" data-tab="${k}" class="${k === t[0] ? "on" : ""}" role="tab" aria-selected="${k === t[0]}">${esc(w)}</button>`).join("")}</div>
+    ${t[2]}
+    <div class="fb">
+      <label id="c${i}">${esc(x.question || C.question)}</label>
+      <div class="choices" role="group" aria-labelledby="c${i}">${(x.choices || C.choices).map(([v, w, c]) => `<button type="button" data-i="${i}" data-v="${v}" data-c="${c}" aria-pressed="${s.v === v}">${esc(w)}</button>`).join("")}</div>
+      <label for="n${i}">${esc(C.noteLabel)}</label>
+      <textarea id="n${i}" data-i="${i}" placeholder="${esc(C.notePlaceholder)}">${esc(s.note || "")}</textarea>
+      ${C.form ? `<p class="small" id="saved" role="status" aria-live="polite" style="margin:8px 0 0"></p>` : ""}
+    </div>`;
+}
+function lastSlide() {
+  return `<div class="kicker">Send your feedback</div>
+    <h2>You marked ${marked()} of ${L.length} ${C.nouns}</h2>
+    <ul class="marks">${L.map((x, i) => {
+      const v = state[i]?.v;
+      return `<li><a href="#${i + 1}">${i + 1}. ${esc(x.title)}</a><span class="tag ${v ? colorOf(i, v) : "none"}">${v ? esc(labelOf(i, v)) : "Not marked"}</span></li>`;
+    }).join("")}</ul>
+    ${C.form ? `<p class="say">Your answers saved for Will as you clicked them. You do not need to send anything.</p>` : ""}
+    ${nameField()}
+    <p style="margin-top:14px"><button class="big" id="copy" type="button">Copy my feedback</button><span class="done" id="done" role="status" aria-live="polite"></span></p>
+    <p class="small">${C.form ? "To also send it in Slack, paste it to Will there." : "Then paste it to Will in Slack."}</p>`;
+}
+function dots() {
+  const d = [`<button type="button" data-go="0" aria-label="Start" ${at === 0 ? 'aria-current="true"' : ""}></button>`];
+  L.forEach((_, i) => d.push(`<button type="button" data-go="${i + 1}" class="${state[i]?.v ? colorOf(i, state[i].v) : ""}" aria-label="${C.noun} ${i + 1}" ${at === i + 1 ? 'aria-current="true"' : ""}></button>`));
+  d.push(`<button type="button" data-go="${LAST}" aria-label="Send your feedback" ${at === LAST ? 'aria-current="true"' : ""}></button>`);
+  document.getElementById("dots").innerHTML = d.join("");
+}
+function where() {
+  document.getElementById("where").textContent = at === 0 ? "Start" : at === LAST ? "Send your feedback" : `${C.noun} ${at} of ${L.length} · ${marked()} marked`;
+}
+function show(n) {
+  at = Math.max(0, Math.min(LAST, n));
+  document.getElementById("slide").innerHTML = at === 0 ? C.start.replace("<!--name-->", nameField()) : at === LAST ? lastSlide() : itemSlide(at - 1);
+  document.getElementById("back").disabled = at === 0;
+  const next = document.getElementById("next");
+  next.disabled = at === LAST;
+  next.textContent = at === L.length ? "Finish ›" : "Next ›";
+  where(); dots();
+  scrollTo(0, 0);
+  if (location.hash !== `#${at}`) history.replaceState(null, "", `#${at}`);
+  console.log("[review] slide", { page: C.key, at, tab, marked: marked() });
+}
+const go = n => show(n);
+document.getElementById("back").addEventListener("click", () => go(at - 1));
+document.getElementById("next").addEventListener("click", () => go(at + 1));
+addEventListener("hashchange", () => { const n = parseInt(location.hash.slice(1), 10); if (!Number.isNaN(n) && n !== at) show(n); });
+// The left and right arrows move the slides (decks get the arrow keys), but never while someone types.
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+  if (e.key === "ArrowRight") { e.preventDefault(); go(at + 1); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); go(at - 1); }
+});
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]");
+  if (g) { go(+g.dataset.go); return; }
+  const tb = e.target.closest("[data-tab]");
+  if (tb) {
+    tab = tb.dataset.tab;
+    const y = scrollY;
+    show(at);
+    scrollTo(0, Math.min(y, 120));
+    return;
+  }
+  const b = e.target.closest(".choices button");
+  if (b) {
+    const i = +b.dataset.i;
+    state[i] = { ...(state[i] || {}), v: b.dataset.v };
+    b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    save(); dots(); where();
+    sendItem(i, 0);
+    console.log("[review] marked", { page: C.key, item: i + 1, ref: L[i].ref, choice: b.dataset.v });
+  }
+  if (e.target.id === "copy") copy();
+});
+document.addEventListener("input", e => {
+  if (e.target.matches("textarea[data-i]")) { const i = +e.target.dataset.i; state[i] = { ...(state[i] || {}), note: e.target.value }; save(); sendItem(i, 1500); }
+  if (e.target.id === "name") {
+    state.name = e.target.value; save();
+    clearTimeout(timers.name);
+    timers.name = setTimeout(() => send("(the reader's name)", "", ""), 1500);
+  }
+});
+function text() {
+  const who = (state.name || "").trim() || "(no name)";
+  const lines = [`${C.head}: feedback from ${who}`];
+  L.forEach((x, i) => {
+    const s = state[i] || {};
+    lines.push(`${i + 1}. ${x.title} (${x.ref}): ${s.v ? labelOf(i, s.v) : "not marked"}`);
+    if ((s.note || "").trim()) lines.push(`   ${s.note.trim().replace(/\n+/g, " / ")}`);
+  });
+  lines.push(`Marked ${marked()} of ${L.length}.`);
+  return lines.join("\n");
+}
+async function copy() {
+  const t = text(), done = document.getElementById("done");
+  try {
+    await navigator.clipboard.writeText(t);
+  } catch (e) {
+    // Older browsers: copy through a hidden text box.
+    const ta = Object.assign(document.createElement("textarea"), { value: t });
+    document.body.append(ta); ta.select(); document.execCommand("copy"); ta.remove();
+    console.warn("[review] clipboard API failed; used the fallback", e);
+  }
+  done.textContent = "Copied. Paste it to Will.";
+  console.log("[review] feedback copied", { page: C.key, chars: t.length, marked: marked() });
+}
+// The module menu closes on a click anywhere else.
+document.addEventListener("click", ev => { const m = document.querySelector("details.mods"); if (m && m.open && !m.contains(ev.target)) m.open = false; });
+const start = parseInt(location.hash.slice(1), 10);
+show(Number.isNaN(start) ? 0 : start);
+console.log("[review] page ready", { page: C.key, items: L.length });
+</script>
+</body>
+</html>
